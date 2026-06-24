@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block admin and dashboard from crawlers
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+Sitemap: https://stigmaboy.com/sitemap.xml
