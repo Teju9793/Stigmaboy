@@ -6,6 +6,7 @@ import { formatPrice, formatDate } from "@/lib/utils/format";
 import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { BackButton } from "@/components/ui/BackButton";
 import { Badge } from "@/components/ui/index";
 import type { Order, OrderItem } from "@/types/database.types";
 
@@ -32,6 +33,7 @@ export default async function DashboardOrdersPage() {
 
   return (
     <div className="space-y-8 animate-fade-in">
+      <BackButton fallback="/dashboard" label="Back to Dashboard" />
       <div>
         <h1 className="font-display text-3xl font-black text-text-primary">
           Order History

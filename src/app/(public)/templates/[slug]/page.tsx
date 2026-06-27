@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Download, Star, ArrowLeft, CheckCircle2,
+  Download, Star, CheckCircle2,
   Lock, Zap,
 } from "lucide-react";
+import { BackButton } from "@/components/ui/BackButton";
 import {
   getTemplateBySlug,
   getUserTemplatePurchase,
@@ -99,14 +100,7 @@ export default async function TemplateDetailPage({ params }: PageProps) {
 
             {/* Left */}
             <div className="lg:col-span-3 space-y-5">
-              <Link
-                href="/templates"
-                className="inline-flex items-center gap-1.5 text-xs text-text-muted
-                           hover:text-text-primary transition-colors"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                All Templates
-              </Link>
+              <BackButton fallback="/templates" label="All Templates" />
 
               {/* Badges */}
               <div className="flex flex-wrap gap-2">

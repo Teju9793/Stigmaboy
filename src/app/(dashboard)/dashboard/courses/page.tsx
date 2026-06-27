@@ -5,6 +5,7 @@ import { getUserWithProfile } from "@/lib/supabase/server";
 import { getUserPurchasedCourses } from "@/lib/queries/courses";
 import { CourseCard } from "@/components/courses/CourseCard";
 import { Button } from "@/components/ui/Button";
+import { BackButton } from "@/components/ui/BackButton";
 import { BookOpen, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default async function DashboardCoursesPage() {
 
   return (
     <div className="space-y-8 animate-fade-in">
+      <BackButton fallback="/dashboard" label="Back to Dashboard" />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-display text-3xl font-black text-text-primary">

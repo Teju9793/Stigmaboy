@@ -4,6 +4,7 @@ import { getTemplates, getTemplateCategories } from "@/lib/queries/templates";
 import { TemplateCard } from "@/components/templates/TemplateCard";
 import { TemplateFilters } from "@/components/templates/TemplateFilters";
 import { PaginationBar } from "@/components/courses/PaginationBar";
+import { BackButton } from "@/components/ui/BackButton";
 
 export const metadata: Metadata = {
   title: "Templates",
@@ -52,6 +53,8 @@ export default async function TemplatesPage({ searchParams }: PageProps) {
   return (
     <div className="section-padding">
       <div className="section-container">
+        <BackButton fallback="/" label="Back to Home" className="mb-6" />
+
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-light mb-3">

@@ -5,6 +5,7 @@ import { getUserWithProfile } from "@/lib/supabase/server";
 import { getUserWishlist } from "@/lib/queries/templates";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/Button";
+import { BackButton } from "@/components/ui/BackButton";
 import { Heart } from "lucide-react";
 import { TemplateCard } from "@/components/templates/TemplateCard";
 import { CourseCard } from "@/components/courses/CourseCard";
@@ -24,6 +25,7 @@ export default async function DashboardWishlistPage() {
   if (wishlist.length === 0) {
     return (
       <div className="space-y-8 animate-fade-in">
+        <BackButton fallback="/dashboard" label="Back to Dashboard" />
         <h1 className="font-display text-3xl font-black text-text-primary">Wishlist</h1>
         <div className="flex flex-col items-center justify-center py-24 text-center
                         border border-dashed border-bg-border rounded-2xl">
@@ -69,6 +71,7 @@ export default async function DashboardWishlistPage() {
 
   return (
     <div className="space-y-8 animate-fade-in">
+      <BackButton fallback="/dashboard" label="Back to Dashboard" />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-display text-3xl font-black text-text-primary">Wishlist</h1>

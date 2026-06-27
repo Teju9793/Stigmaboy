@@ -1,39 +1,43 @@
+"use client";
+
 import Link from "next/link";
-import { getUserWithProfile } from "@/lib/supabase/server";
 import { NavbarClient } from "./NavbarClient";
 
-// Server component — reads auth state server-side
-export async function Navbar() {
-  const data = await getUserWithProfile();
-
+export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Backdrop blur bar */}
       <div className="absolute inset-0 bg-bg-base/85 backdrop-blur-xl border-b border-bg-border" />
 
       <nav className="relative section-container">
-        <div className="flex items-center justify-between h-16 md:h-18">
+        <div className="flex items-center h-18 md:h-20 gap-4">
 
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 group shrink-0"
-            aria-label="STIGMABOY — Home"
-          >
-            <div className="relative">
-              <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center
-                              shadow-brand-glow group-hover:scale-110 transition-transform duration-200">
-                <span className="text-white font-display font-black text-sm">S</span>
+          {/* Left: Logo */}
+          <div className="flex-1 flex justify-start">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 group shrink-0"
+              aria-label="STIGMABOY — Home"
+            >
+              <div className="relative">
+                <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-brand-gradient flex items-center justify-center
+                                shadow-brand-glow group-hover:scale-110 transition-transform duration-200">
+                  <span className="text-white font-display font-black text-sm md:text-base">S</span>
+                </div>
               </div>
-            </div>
-            <span className="font-display font-black text-xl tracking-tight text-text-primary
-                             group-hover:text-gradient-brand transition-all duration-200">
-              STIGMABOY
-            </span>
-          </Link>
+              <span className="font-display font-black text-xl md:text-2xl tracking-tight text-text-primary
+                               group-hover:text-gradient-brand transition-all duration-200">
+                STIGMABOY
+              </span>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          {/* Desktop Navigation — centred and balanced */}
+          <nav
+            className="hidden md:flex items-center justify-center gap-1 xl:gap-2"
+            aria-label="Main navigation"
+          >
+            <NavLink href="/">Home</NavLink>
             <NavLink href="/courses">Courses</NavLink>
             <NavLink href="/templates">Templates</NavLink>
             <NavLink href="/resources">Free Resources</NavLink>
@@ -42,7 +46,10 @@ export async function Navbar() {
           </nav>
 
           {/* Right: Auth + Cart */}
-          <NavbarClient user={data?.user ?? null} profile={data?.profile ?? null} />
+          <div className="flex-1 flex justify-end">
+            <NavbarClient />
+          </div>
+
         </div>
       </nav>
     </header>
@@ -60,14 +67,14 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="relative px-3.5 py-2 text-sm font-medium text-text-secondary
+      className="relative px-4 py-2 text-sm md:text-base font-semibold text-text-secondary
                  rounded-lg transition-all duration-200
                  hover:text-text-primary hover:bg-bg-surface
-                 group"
+                 group whitespace-nowrap"
     >
       {children}
       {/* Active indicator — animated underline */}
-      <span className="absolute bottom-1 left-3.5 right-3.5 h-px bg-brand scale-x-0
+      <span className="absolute bottom-1 left-4 right-4 h-px bg-brand scale-x-0
                        group-hover:scale-x-100 transition-transform duration-200 origin-left" />
     </Link>
   );

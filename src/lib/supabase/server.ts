@@ -58,27 +58,29 @@ export function createServiceClient() {
 export async function getUser() {
   const supabase = createClient();
   const {
-    data: { user },
+    data: { session },
     error,
-  } = await supabase.auth.getUser();
-  if (error || !user) return null;
-  return user;
+  } = await supabase.auth.getSession();
+
+  if (error || !session?.user) return null;
+  return session.user;
 }
 
 // Get user + their profile row joined
 export async function getUserWithProfile() {
   const supabase = createClient();
   const {
-    data: { user },
+    data: { session },
     error,
-  } = await supabase.auth.getUser();
-  if (error || !user) return null;
+  } = await supabase.auth.getSession();
+
+  if (error || !session?.user) return null;
 
   const { data: profile } = await supabase
     .from("user_profiles")
     .select("*")
-    .eq("id", user.id)
+    .eq("id", session.user.id)
     .single();
 
-  return { user, profile };
+  return { user: session.user, profile };
 }

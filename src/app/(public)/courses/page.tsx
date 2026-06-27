@@ -4,6 +4,7 @@ import { getCourses } from "@/lib/queries/courses";
 import { CourseCard } from "@/components/courses/CourseCard";
 import { CourseFilters } from "@/components/courses/CourseFilters";
 import { PaginationBar } from "@/components/courses/PaginationBar";
+import { BackButton } from "@/components/ui/BackButton";
 
 export const metadata: Metadata = {
   title: "Courses",
@@ -45,6 +46,7 @@ export default async function CoursesPage({ searchParams }: PageProps) {
   return (
     <div className="section-padding">
       <div className="section-container">
+        <BackButton fallback="/" label="Back to Home" className="mb-6" />
 
         {/* Page header */}
         <div className="mb-10">

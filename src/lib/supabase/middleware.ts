@@ -2,7 +2,7 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
+  const supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -14,12 +14,10 @@ export async function updateSession(request: NextRequest) {
         },
         set(name: string, value: string, options: CookieOptions) {
           request.cookies.set({ name, value, ...options });
-          supabaseResponse = NextResponse.next({ request });
           supabaseResponse.cookies.set({ name, value, ...options });
         },
         remove(name: string, options: CookieOptions) {
           request.cookies.set({ name, value: "", ...options });
-          supabaseResponse = NextResponse.next({ request });
           supabaseResponse.cookies.set({ name, value: "", ...options });
         },
       },
@@ -28,8 +26,8 @@ export async function updateSession(request: NextRequest) {
 
   // MUST await — refreshes the session token
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  return { supabaseResponse, user };
+  return { supabaseResponse, user: session?.user ?? null };
 }

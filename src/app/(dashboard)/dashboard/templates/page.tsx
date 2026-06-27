@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getUserWithProfile } from "@/lib/supabase/server";
 import { getUserPurchasedTemplates } from "@/lib/queries/templates";
 import { Button } from "@/components/ui/Button";
+import { BackButton } from "@/components/ui/BackButton";
 import { Download, Package, ArrowRight } from "lucide-react";
 import { formatPrice, formatFileSize } from "@/lib/utils/format";
 import Image from "next/image";
@@ -22,6 +23,7 @@ export default async function DashboardTemplatesPage() {
 
   return (
     <div className="space-y-8 animate-fade-in">
+      <BackButton fallback="/dashboard" label="Back to Dashboard" />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-display text-3xl font-black text-text-primary">

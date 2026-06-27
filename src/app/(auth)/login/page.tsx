@@ -68,7 +68,7 @@ function LoginContent() {
         return;
       }
 
-      router.push(redirectTo);
+      router.replace(redirectTo);
       router.refresh();
     } finally {
       setLoading(false);

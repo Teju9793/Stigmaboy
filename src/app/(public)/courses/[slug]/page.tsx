@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Star, Clock, BookOpen, Users, CheckCircle2,
-  Lock, Play, ArrowLeft,
+  Lock, Play,
 } from "lucide-react";
+import { BackButton } from "@/components/ui/BackButton";
 import { getCourseBySlug, getUserCoursePurchase } from "@/lib/queries/courses";
 import { getUser } from "@/lib/supabase/server";
 import { CourseCurriculum } from "@/components/courses/CourseCurriculum";
@@ -99,14 +100,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
             {/* Left: info */}
             <div className="lg:col-span-3 space-y-5">
               {/* Breadcrumb */}
-              <Link
-                href="/courses"
-                className="inline-flex items-center gap-1.5 text-xs text-text-muted
-                           hover:text-text-primary transition-colors"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                All Courses
-              </Link>
+              <BackButton fallback="/courses" label="All Courses" />
 
               {/* Badges row */}
               <div className="flex flex-wrap gap-2">

@@ -10,6 +10,9 @@ import {
   Heart,
   User,
   ArrowLeft,
+  Activity,
+  Settings,
+  Home,
 } from "lucide-react";
 import { DashboardMobileHeader } from "./DashboardMobileHeader";
 
@@ -20,7 +23,9 @@ const SIDEBAR_LINKS = [
   { href: "/dashboard/downloads", label: "Downloads", icon: Download },
   { href: "/dashboard/orders", label: "Order History", icon: ShoppingBag },
   { href: "/dashboard/wishlist", label: "Wishlist", icon: Heart },
+  { href: "/dashboard/activity", label: "Activity", icon: Activity },
   { href: "/dashboard/profile", label: "Profile", icon: User },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
 export default async function DashboardLayout({
@@ -45,7 +50,7 @@ export default async function DashboardLayout({
         {/* Desktop sidebar */}
         <aside className="hidden md:flex flex-col w-64 shrink-0 border-r border-bg-border
                           bg-bg-surface sticky top-0 h-screen">
-          {/* Logo */}
+          {/* Logo + Home */}
           <div className="px-5 py-5 border-b border-bg-border">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-7 h-7 rounded-lg bg-brand-gradient flex items-center justify-center
@@ -101,8 +106,17 @@ export default async function DashboardLayout({
             ))}
           </nav>
 
-          {/* Back to site */}
-          <div className="p-3 border-t border-bg-border">
+          {/* Back to site + Home */}
+          <div className="p-3 border-t border-bg-border space-y-0.5">
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl
+                         text-sm text-text-muted hover:text-text-primary hover:bg-bg-elevated
+                         transition-colors duration-150"
+            >
+              <Home className="w-4 h-4" />
+              Home
+            </Link>
             <Link
               href="/"
               className="flex items-center gap-2 px-3 py-2.5 rounded-xl
